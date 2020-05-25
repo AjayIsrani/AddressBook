@@ -1,0 +1,118 @@
+<div class="container" style="padding-top: 50px;">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>
+                {{ PageHeader }}
+                <hr />
+            </h1>
+            <div class="text-danger">{{message}}</div>
+            <br />
+        </div>
+    </div>
+    <br />
+    <form class="form-horizontal" #SignUpForm="ngForm" (ngSubmit)="addUser(SignUpForm.value)">
+        <fieldset>
+            <div class="form-group row">
+                <label for="lblUserName" class="col-sm-2 col-from-label" style="font-weight: bold" for="UserName">User
+                    Name</label>
+                <div class="col-sm-4">
+                    <input #UserName="ngModel" [(ngModel)]="UserDAO.UserName" name="UserName" type="text"
+                        placeholder="Enter User Name" class="form-control" required>
+                    <span style="color:red" *ngIf="UserName.touched && !UserName.valid" class="help-block">Enter
+                        User Name</span>
+                </div>
+                <label for="lblFullName" class="col-sm-2 col-from-label" style="font-weight: bold" for="FullName">Full
+                    Name</label>
+                <div class="col-sm-4">
+                    <input #FullName="ngModel" [(ngModel)]="UserDAO.FullName" name="FullName" type="text"
+                        placeholder="Enter Full Name" class="form-control" required>
+                    <span style="color:red" *ngIf="FullName.touched && !FullName.valid" class="help-block">Enter
+                        Full Name</span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="lblPassword" class="col-sm-2 col-from-label" style="font-weight: bold"
+                    for="Password">Password</label>
+                <div class="col-sm-4">
+                    <input #Password="ngModel" [(ngModel)]="UserDAO.Password" name="Password" type="password"
+                        placeholder="Enter Password" class="form-control" required>
+                    <span style="color:red" *ngIf="Password.touched && !Password.valid" class="help-block">Enter
+                        Password</span>
+                </div>
+                <label for="lblBirthDate" class="col-sm-2 col-from-label" style="font-weight: bold"
+                    for="BirthDate">BirthDate</label>
+                <div class="col-sm-4">
+                    <input #BirthDate="ngModel" [(ngModel)]="UserDAO.BirthDate" name="BirthDate" type="date"
+                        placeholder="Select Date" class="form-control" required>
+                    <span style="color:red" *ngIf="BirthDate.touched && !BirthDate.valid" class="help-block">Select
+                        Date</span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="lblAddress" class="col-sm-2 col-from-label" style="font-weight: bold"
+                    for="Address">Address</label>
+                <div class="col-sm-4">
+                    <textarea #Address="ngModel" [(ngModel)]="UserDAO.Address" name="Address" type="text" cols="5" rows="3" placeholder="Enter Address" class="form-control" required></textarea>
+                    <span style="color:red" *ngIf="Address.touched && !Address.valid" class="help-block">Enter
+                        Address</span>
+                </div>
+                <label for="lblPinCode" class="col-sm-2 col-from-label" style="font-weight: bold" for="PinCode">PinCode</label>
+                <div class="col-sm-4">
+                    <input #PinCode="ngModel" [(ngModel)]="UserDAO.PinCode" name="PinCode" type="text" maxlength="6"
+                        placeholder="Enter PinCode" class="form-control" required>
+                    <span style="color:red" *ngIf="PinCode.touched && !PinCode.valid" class="help-block">Enter
+                        PinCode</span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="lblMobileNo" class="col-sm-2 col-from-label" style="font-weight: bold" for="MobileNo">Mobile
+                    Number</label>
+                <div class="col-sm-4">
+                    <input #MobileNo="ngModel" [(ngModel)]="UserDAO.MobileNo" name="MobileNo" type="phone" maxlength="10"
+                        placeholder="Enter Mobile Number" class="form-control" required>
+                    <span style="color:red" *ngIf="MobileNo.touched && !MobileNo.valid" class="help-block">Enter
+                        Mobile Number</span>
+                </div>
+                <label for="lblEmailID" class="col-sm-2 col-from-label" style="font-weight: bold" for="EmailID">Email
+                    Address</label>
+                <div class="col-sm-4">
+                    <input #EmailID="ngModel" [(ngModel)]="UserDAO.EmailID" name="EmailID" type="email"
+                        placeholder="Enter Email Address" class="form-control" required>
+                    <span style="color:red" *ngIf="EmailID.touched && !EmailID.valid" class="help-block">Enter
+                        Email Address</span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="lblFaceBookID" class="col-sm-2 col-from-label" style="font-weight: bold" for="FaceBookID">FaceBook
+                    ID</label>
+                <div class="col-sm-4">
+                    <input #FaceBookID="ngModel" [(ngModel)]="UserDAO.FaceBookID" name="FaceBookID" type="text"
+                        placeholder="Enter FaceBook ID" class="form-control" required>
+                    <span style="color:red" *ngIf="FaceBookID.touched && !FaceBookID.valid" class="help-block">Enter
+                        FaceBook ID</span>
+                </div>
+                <label for="lblLinkedinID" class="col-sm-2 col-from-label" style="font-weight: bold" for="LinkedinID">Linkedin
+                    ID</label>
+                <div class="col-sm-4">
+                    <input #LinkedinID="ngModel" [(ngModel)]="UserDAO.LinkedinID" name="LinkedinID" type="text"
+                        placeholder="Enter Linkedin ID" class="form-control" required>
+                    <span style="color:red" *ngIf="LinkedinID.touched && !LinkedinID.valid" class="help-block">Enter
+                        Linkedin ID</span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10"></div>
+                <div class="col-sm-2 pull-right">
+                    <button class="btn btn-primary pull-right">SignUp</button>&nbsp;
+                    <a ID="hlClear" routerLink="../SignUp" (click)="Resetform()" class="btn btn-danger">Clear</a>
+                </div>
+                <div class="col-md-12 ml-3">
+                    <i>Do have an account ?</i>&nbsp;
+                    <a ID="hlSignUp" routerLink="../Login"><i class="text-primary">Login</i>
+                    </a>
+                </div>
+            </div>
+        </fieldset>
+    </form>  
+</div>
+        

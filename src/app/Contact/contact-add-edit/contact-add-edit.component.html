@@ -1,0 +1,141 @@
+<div class="container" style="padding-top: 50px;">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>
+                {{ PageHeader }}
+                <br />
+            </h1>
+            <label ID="lblMessage" EnableViewContact="false"></label>
+            <br />
+        </div>
+    </div>
+    <br />
+    <form class="form-horizontal" #ContactForm="ngForm" (ngSubmit)="addContact(ContactForm.value)">
+        <fieldset>
+            <div class="form-group row">
+                <label for="lblContactName" class="col-sm-2 col-from-label" style="font-weight: bold"
+                    for="ContactName">Contact
+                    Name</label>
+                <div class="col-sm-10">
+                    <input #ContactName="ngModel" [(ngModel)]="ContactDAO.ContactName" name="ContactName" type="text"
+                        placeholder="Enter Contact Name" class="form-control" required>
+                    <span style="color:red" *ngIf="ContactName.touched && !ContactName.valid" class="help-block">Enter
+                        Contact Name</span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="lblAddress" class="col-sm-2 col-from-label" style="font-weight: bold"
+                    for="Address">Address</label>
+                <div class="col-sm-4">
+                    <textarea #Address="ngModel" [(ngModel)]="ContactDAO.Address" name="Address" type="text"
+                        placeholder="Enter Address" class="form-control" cols="5" rows="3" required></textarea>
+                        <span style="color:red" *ngIf="Address.touched && !Address.valid" class="help-block">Enter
+                            Address</span>
+                </div>
+                <label for="lblPincode" class="col-sm-2 col-from-label" style="font-weight: bold"
+                    for="Pincode">Pincode</label>
+                <div class="col-sm-4">
+                    <input #Pincode="ngModel" [(ngModel)]="ContactDAO.Pincode" name="Pincode" type="text"
+                        placeholder="Enter Pincode" class="form-control" required>
+                    <span style="color:red" *ngIf="Pincode.touched && !Pincode.valid" class="help-block">Enter
+                        Pincode</span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="lblEmailAddress" class="col-sm-2 col-from-label" style="font-weight: bold"
+                    for="EmailAddress">Email Address</label>
+                <div class="col-sm-4">
+                    <input #EmailAddress="ngModel" [(ngModel)]="ContactDAO.EmailAddress" name="EmailAddress" type="email"
+                        placeholder="Enter Email Address" class="form-control" required>
+                    <span style="color:red" *ngIf="EmailAddress.touched && !EmailAddress.valid" class="help-block">Enter Email Address</span>
+                </div>
+                <label for="lblMobileNo" class="col-sm-2 col-from-label" style="font-weight: bold" for="MobileNo">Mobile No</label>
+                <div class="col-sm-4">
+                    <input #MobileNo="ngModel" [(ngModel)]="ContactDAO.MobileNo" name="MobileNo" type="text"
+                        placeholder="Enter Mobile No" class="form-control" required>
+                    <span style="color:red" *ngIf="MobileNo.touched && !MobileNo.valid" class="help-block">Enter
+                            Mobile No</span>
+                </div>
+            </div>
+            <div class="form-group row">
+                    <label for="lblFaceBookID" class="col-sm-2 col-from-label" style="font-weight: bold"
+                        for="FaceBookID">Facebook ID</label>
+                    <div class="col-sm-4">
+                        <input #FaceBookID="ngModel" [(ngModel)]="ContactDAO.FaceBookID" name="FaceBookID" type="text"
+                            placeholder="Enter Facebook ID" class="form-control" required>
+                        <span style="color:red" *ngIf="FaceBookID.touched && !FaceBookID.valid" class="help-block">Enter
+                            Facebook ID</span>
+                    </div>
+                    <label for="lblLinkedinID" class="col-sm-2 col-from-label" style="font-weight: bold" for="LinkedinID">Linkedin ID</label>
+                    <div class="col-sm-4">
+                        <input #LinkedinID="ngModel" [(ngModel)]="ContactDAO.LinkedinID" name="LinkedinID" type="text"
+                            placeholder="Enter Linkedin ID" class="form-control" required>
+                        <span style="color:red" *ngIf="LinkedinID.touched && !LinkedinID.valid" class="help-block">Enter
+                                Linkedin ID</span>
+                    </div>
+                </div>
+            <div class="form-group row">
+                <label for="lblCountryID" class="col-sm-2 col-from-label" style="font-weight: bold"
+                    for="CountryID">Select Country</label>
+                <div class="col-sm-4">
+                    <select #CountryID="ngModel" [(ngModel)]="ContactDAO.CountryID" name="CountryID"
+                        placeholder="Select Country Name" class="form-control"
+                        (change)="selectedIndexChangeCountry($event.target.value)" required>
+                        <option value="null" disabled>Select Country</option>
+                        <option *ngFor="let c of Country" value="{{c.CountryID}}">{{c.CountryName}}
+                        </option>
+                    </select>
+                    <span style="color:red" *ngIf="CountryID.touched && !CountryID.valid" class="help-block">Select
+                        Country Name</span>
+                </div>
+                <label for="lblStateID" class="col-sm-2 col-from-label" style="font-weight: bold" for="StateID">Select
+                    State</label>
+                <div class="col-sm-4">
+                    <select #StateID="ngModel" [(ngModel)]="ContactDAO.StateID" name="StateID"
+                        placeholder="Select State Name" class="form-control" (change)="selectedIndexChangeState($event.target.value)" required>
+                        <option value="null" disabled>Select State</option>
+                        <option *ngFor="let c of State" value="{{c.StateID}}">{{c.StateName}}
+                        </option>
+                    </select>
+                    <span style="color:red" *ngIf="StateID.touched && !StateID.valid" class="help-block">Select
+                        State Name</span>
+                </div>
+            </div>
+            <div class="form-group row">
+                    <label for="lblCityID" class="col-sm-2 col-from-label" style="font-weight: bold"
+                        for="CityID">Select City</label>
+                    <div class="col-sm-4">
+                        <select #CityID="ngModel" [(ngModel)]="ContactDAO.CityID" name="CityID"
+                            placeholder="Select City Name" class="form-control" required>
+                            <option value="null" disabled>Select City</option>
+                            <option *ngFor="let c of City" value="{{c.CityID}}">{{c.CityName}}
+                            </option>
+                        </select>
+                        <span style="color:red" *ngIf="CityID.touched && !CityID.valid" class="help-block">Select
+                            City Name</span>
+                    </div>
+                    <label for="lblContactCategoryID" class="col-sm-2 col-from-label" style="font-weight: bold" for="ContactCategoryID">Select
+                        ContactCategory</label>
+                    <div class="col-sm-4">
+                        <select #ContactCategoryID="ngModel" [(ngModel)]="ContactDAO.ContactCategoryID" name="ContactCategoryID"
+                            placeholder="Select ContactCategory Name" class="form-control" required>
+                            <option value="null" disabled>Select ContactCategory</option>
+                            <option *ngFor="let c of ContactCategory" value="{{c.ContactCategoryID}}">{{c.ContactCategoryName}}
+                            </option>
+                        </select>
+                        <span style="color:red" *ngIf="ContactCategoryID.touched && !ContactCategoryID.valid" class="help-block">Select
+                            ContactCategory Name</span>
+                    </div>
+                </div>
+            <div class="form-group row">
+                <div class="col-sm-10"></div>
+                <div class="col-sm-2 pull-right">
+                    <button class="btn btn-primary pull-right" *ngIf="!isEdit">Save</button>&nbsp;
+                    <button class="btn btn-primary pull-right" *ngIf="isEdit">Save</button>&nbsp;
+                    <a ID="hlCancel" routerLink="../../" class="btn btn-danger" *ngIf="isEdit">Cancel</a>&nbsp;
+                    <a ID="hlCancel" routerLink="../" class="btn btn-danger" *ngIf="!isEdit">Cancel</a>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

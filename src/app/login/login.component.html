@@ -1,0 +1,49 @@
+<div class="container" style="padding-top: 50px;">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>
+                {{ PageHeader }}
+            </h1>
+            <hr />
+            <div class="text-danger">{{message}}</div>
+        </div>
+        <br />
+    </div>
+    <br />
+    <form class="form-horizontal" #LoginForm="ngForm" (ngSubmit)="Verify(LoginForm.value)">
+        <fieldset>
+            <div class="form-group row">
+                <label for="lblUserName" class="col-sm-2 col-from-label" style="font-weight: bold" for="UserName">User
+                    Name</label>
+                <div class="col-sm-4">
+                    <input #UserName="ngModel" [(ngModel)]="UserDAO.UserName" name="UserName" type="text"
+                        placeholder="Enter User Name" class="form-control" autofocus required>
+                    <span style="color:red" *ngIf="UserName.touched && !UserName.valid" class="help-block">Enter
+                        User Name</span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="lblPassword" class="col-sm-2 col-from-label" style="font-weight: bold"
+                    for="Password">Password</label>
+                <div class="col-sm-4">
+                    <input #Password="ngModel" [(ngModel)]="UserDAO.Password" name="Password" type="text"
+                        placeholder="Enter Password" class="form-control" required>
+                    <span style="color:red" *ngIf="Password.touched && !Password.valid" class="help-block">Enter
+                        Password</span>
+                </div>
+            </div>
+            <div class="form-group row">   
+                <div class="col-sm-4"><a ID="hlorgetPassword" routerLink="">Forget Password?</a></div>
+                <div class="col-sm-2 pull-right">
+                    <button type="submit" class="btn btn-primary pull-right">Login</button>&nbsp;
+                    <a ID="hlClear" routerLink="../Login" (click)="Resetform()" class="btn btn-danger">Clear</a>
+                </div>
+                <div class="col-sm-12 ml-3">
+                    <i class="small">Don't have an account ?</i>&nbsp;
+                    <a ID="hlSignUp" routerLink="../SignUp"><i class="small text-primary">SignUp</i>
+                    </a>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

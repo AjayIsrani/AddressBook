@@ -1,0 +1,77 @@
+<div class="container" style="padding-top: 50px;">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Contact Category List</h1>
+            <br />
+            <a ID="hlContactCategoryAdd" routerLink="./Add" class="btn btn-primary">Add New Contact Category</a>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <span style="color:red" class="help-block">{{Message}}</span>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <div id="TableContent" [hidden]="Count===0">
+                <table
+                    class="table table-bordered table-advanced table-responsive-md table-responsive-sm table-striped table-hover hide-if-no-data">
+                    <!-- Table Header -->
+                    <thead>
+                        <tr>
+                            <th>
+                                Sr No.
+                            </th>
+                            <th>
+                                Contact Category Name
+                            </th>
+                            <th style="text-align: center">
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <!-- END Table Header -->
+                    <tbody>
+                        <!-- Table Rows -->
+                        <tr *ngFor="let c of ContactCategory; let i = index">
+                            <td>
+                                {{i+1}}
+                            </td>
+                            <td>
+                                {{c.ContactCategoryName}}
+                            </td>
+                            <td class="text-nowrap text-center">
+                                <a ID="hlEdit" class="btn btn-primary" ToolTip="Edit Record"
+                                    routerLink="./Edit/{{ c.ContactCategoryID }}">Edit</a>
+                                &nbsp;&nbsp;&nbsp;
+                                <Button class="btn btn-danger" ToolTip="Delete Record"
+                                    (click)="delete(c.ContactCategoryID)">Delete</Button>
+                            </td>
+                        </tr>
+                        <!-- END Table Rows -->
+                    </tbody>
+                    <!-- Table Footer -->
+                    <tfoot>
+                        <tr>
+                            <th>
+                                Sr No.
+                            </th>
+                            <th>
+                                Contact Category Name
+                            </th>
+                            <th style="text-align: center">
+                                Action
+                            </th>
+                        </tr>
+                    </tfoot>
+                    <!-- END Table Footer -->
+                </table>
+                Showing 1 to {{ Count }} of {{ Count }} entries
+            </div>
+
+            <br />
+        </div>
+    </div>
+</div>

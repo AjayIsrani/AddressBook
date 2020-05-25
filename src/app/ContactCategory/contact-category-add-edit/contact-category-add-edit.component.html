@@ -1,0 +1,36 @@
+<div class="container" style="padding-top: 50px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>
+                    {{ PageHeader }}
+                    <br />
+                </h1>
+                <label ID="lblMessage" EnableViewState="false"></label>
+                <br />
+            </div>
+        </div>
+        <br />
+        <form class="form-horizontal" #ContactCategoryForm="ngForm" (ngSubmit)="addContactCategory(ContactCategoryForm.value)">
+            <fieldset>
+                <div class="form-group row">
+                    <label for="lblContactCategoryName" class="col-sm-2 col-from-label" style="font-weight: bold"
+                        for="ContactCategoryName">Contact Category Name</label>
+                    <div class="col-sm-10">
+                        <input #ContactCategoryName="ngModel" [(ngModel)]="ContactCategoryDAO.ContactCategoryName" name="ContactCategoryName" type="text"
+                            placeholder="Enter Contact Category Name" class="form-control" required>
+                        <span style="color:red" *ngIf="ContactCategoryName.touched && !ContactCategoryName.valid" class="help-block">Enter
+                            Contact Category Name</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10"></div>
+                    <div class="col-sm-2 pull-right">
+                        <button class="btn btn-primary pull-right" *ngIf="!isEdit">Save</button>&nbsp;
+                        <button class="btn btn-primary pull-right" *ngIf="isEdit">Save</button>&nbsp;
+                        <a ID="hlCancel" routerLink="../../" class="btn btn-danger"  *ngIf="isEdit">Cancel</a>&nbsp;
+                        <a ID="hlCancel" routerLink="../" class="btn btn-danger"  *ngIf="!isEdit">Cancel</a>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
